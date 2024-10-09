@@ -3,28 +3,32 @@ package org.example.grupo20integrador3.dtos;
 import java.util.List;
 
 public class EstudianteDTO {
-    private String nombres;
+    private String nombre;
     private String apellido;
     private int edad;
     private String genero;
     private int dni;
-    private String localidad;
+    private String ciudad;
     private int nro_libreta;
     private List<EstudianteCarreraDTO> carreras;
 
-    public EstudianteDTO(String nombres, String apellido, String genero, String localidad) {
-        this.nombres = nombres;
+
+    public EstudianteDTO(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta) {
+        this.nombre = nombre;
         this.apellido = apellido;
+        this.edad = edad;
         this.genero = genero;
-        this.localidad = localidad;
+        this.dni = dni;
+        this.ciudad = ciudad;
+        this.nro_libreta = nro_libreta;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -59,12 +63,12 @@ public class EstudianteDTO {
         this.dni = dni;
     }
 
-    public String getLocalidad() {
-        return localidad;
+    public String getCiudad() {
+        return ciudad;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public int getNro_libreta() {
@@ -79,17 +83,16 @@ public class EstudianteDTO {
         return carreras;
     }
 
-    public void addCarrera(){
-
-    }
-
     @Override
     public String toString() {
-        return " EstudianteDTO{" +
-                "nombres='" + nombres + '\'' +
+        return "EstudianteDTO{" +
+                "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", edad=" + edad +
                 ", genero='" + genero + '\'' +
-                ", localidad='" + localidad + '\'' +
+                ", dni=" + dni +
+                ", ciudad='" + ciudad + '\'' +
+                ", nro_libreta=" + nro_libreta +
                 '}';
     }
 }
