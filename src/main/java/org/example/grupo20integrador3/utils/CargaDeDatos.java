@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -128,8 +129,8 @@ public class CargaDeDatos {
                             EstudianteCarrera estudianteCarrera = new EstudianteCarrera(inscripcion, graduacion, antiguedad, estudianteOpt.get(), carreraOpt.get());
 
                             // Verificar si ya existe la relación
-                            Optional<EstudianteCarrera> existingEstudianteCarrera = estudianteCarreraRepository.findByEstudiante_LUAndCarrera_idCarrera(estudianteOpt.get().getLU(), idCarrera);
-                            if (!existingEstudianteCarrera.isPresent()) {
+                            List<EstudianteCarrera> existingEstudianteCarrera = estudianteCarreraRepository.findByEstudianteAndCarrera(estudianteOpt.get(), carreraOpt.get());
+                            if (existingEstudianteCarrera.isEmpty()) {
                                 estudianteCarreraRepository.save(estudianteCarrera);
                             } else {
                                 System.out.println("La relación ya existe para el estudiante " + id_estudiante + " y la carrera " + idCarrera);
