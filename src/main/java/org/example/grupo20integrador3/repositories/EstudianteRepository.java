@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
 
@@ -15,4 +16,5 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     public List<Estudiante> getEstudiantesOrdenApellido();
 
 
+    Optional<Estudiante> findByDNI(int dni);
 }

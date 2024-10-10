@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Carrera implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrera;
     @Column
     private String nombre;

@@ -25,7 +25,7 @@ public class Estudiante implements Serializable {
     @Column
     private String ciudad;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int LU;
 
     @OneToMany(mappedBy = "estudiante")  //se refiere al atributo de estudianteCarrera
