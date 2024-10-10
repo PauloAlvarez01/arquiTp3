@@ -17,4 +17,6 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
 
 
     Optional<Estudiante> findByDNI(int dni);
+
+    Optional<Estudiante> findByLU(int LU);
 }

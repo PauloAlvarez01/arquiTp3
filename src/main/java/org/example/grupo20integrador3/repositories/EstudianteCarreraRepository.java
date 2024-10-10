@@ -8,5 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface EstudianteCarreraRepository extends JpaRepository<EstudianteCarrera, Long> {
-    Optional<EstudianteCarrera> findByEstudianteAndCarrera(Estudiante estudiante, Carrera carrera);
+    Optional<EstudianteCarrera> findByEstudiante_LUAndCarrera_idCarrera(int LU, int idCarrera);
+
+
 }
+

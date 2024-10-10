@@ -77,32 +77,6 @@ public class CargaDeDatos {
             }
         }
 
-        // Cargar relaciones estudiante-carrera
-        for (CSVRecord row : getData("estudianteCarrera.csv")) {
-            if (row.size() >= 6) {
-                String un_id_estudiante = row.get(1);
-                String un_id_carrera = row.get(2);
-
-                // Supongamos que ya has recuperado el estudiante y la carrera usando sus IDs
-                Optional<Estudiante> estudianteOpt = estudianteRepository.findByDNI(Integer.parseInt(un_id_estudiante)); // o el método que uses para buscar
-                Optional<Carrera> carreraOpt = carreraRepository.findById(Integer.parseInt(un_id_carrera));
-
-                if (estudianteOpt.isPresent() && carreraOpt.isPresent()) {
-                    Estudiante estudiante = estudianteOpt.get();
-                    Carrera carrera = carreraOpt.get();
-                    // Verificar si la relación ya existe
-                    Optional<EstudianteCarrera> existingEstudianteCarrera = estudianteCarreraRepository.findByEstudianteAndCarrera(estudiante, carrera);
-                    if (!existingEstudianteCarrera.isPresent()) {
-                        // Aquí creas tu objeto EstudianteCarrera y lo guardas
-                    } else {
-                        System.out.println("La relación estudiante-carrera ya está cargada.");
-                    }
-                } else {
-                    System.out.println("Estudiante o carrera no encontrados.");
-                }
-            }
-        }
-
         // Cargar carreras
         for (CSVRecord row : getData("carreras.csv")) {
             if (row.size() >= 3) {
@@ -112,15 +86,15 @@ public class CargaDeDatos {
 
                 if (!id.isEmpty() && !carreraString.isEmpty() && !tiempoDuracion.isEmpty()) {
                     try {
-                        int id_carrera = Integer.parseInt(id);
+                        int idCarrera = Integer.parseInt(id);
                         // Verificar si la carrera ya existe
-                        Optional<Carrera> carreraExistente = carreraRepository.findById(id_carrera);
+                        Optional<Carrera> carreraExistente = carreraRepository.findByIdCarrera(idCarrera);
                         if (!carreraExistente.isPresent()) {
                             int duracion = Integer.parseInt(tiempoDuracion);
-                            Carrera carrera = new Carrera(id_carrera, carreraString, duracion);
+                            Carrera carrera = new Carrera(idCarrera, carreraString, duracion);
                             carreraRepository.save(carrera);
                         } else {
-                            System.out.println("La carrera con ID " + id_carrera + " ya existe.");
+                            System.out.println("La carrera con ID " + idCarrera + " ya existe.");
                         }
                     } catch (NumberFormatException e) {
                         System.err.println("Error de formato en datos de carrera: " + e.getMessage());
@@ -128,5 +102,50 @@ public class CargaDeDatos {
                 }
             }
         }
+
+        // Cargar relaciones estudiante-carrera
+        for (CSVRecord row : getData("estudianteCarrera.csv")) {
+            if (row.size() >= 6) {
+                String un_id_estudiante = row.get(1);
+                String un_id_carrera = row.get(2);
+                String una_inscripcion = row.get(3);
+                String una_graduacion = row.get(4);
+                String una_antiguedad = row.get(5);
+
+                if (!un_id_estudiante.isEmpty() && !un_id_carrera.isEmpty() && !una_inscripcion.isEmpty() && !una_graduacion.isEmpty() && !una_antiguedad.isEmpty()) {
+                    try {
+                        int id_estudiante = Integer.parseInt(un_id_estudiante);
+                        int idCarrera = Integer.parseInt(un_id_carrera);
+                        int inscripcion = Integer.parseInt(una_inscripcion);
+                        int graduacion = Integer.parseInt(una_graduacion);
+                        int antiguedad = Integer.parseInt(una_antiguedad);
+
+                        // Verificar que existen el estudiante y la carrera
+                        Optional<Estudiante> estudianteOpt = estudianteRepository.findByDNI(id_estudiante);
+                        Optional<Carrera> carreraOpt = carreraRepository.findByIdCarrera(idCarrera);
+
+                        if (estudianteOpt.isPresent() && carreraOpt.isPresent()) {
+                            EstudianteCarrera estudianteCarrera = new EstudianteCarrera(inscripcion, graduacion, antiguedad, estudianteOpt.get(), carreraOpt.get());
+
+                            // Verificar si ya existe la relación
+                            Optional<EstudianteCarrera> existingEstudianteCarrera = estudianteCarreraRepository.findByEstudiante_LUAndCarrera_idCarrera(estudianteOpt.get().getLU(), idCarrera);
+                            if (!existingEstudianteCarrera.isPresent()) {
+                                estudianteCarreraRepository.save(estudianteCarrera);
+                            } else {
+                                System.out.println("La relación ya existe para el estudiante " + id_estudiante + " y la carrera " + idCarrera);
+                            }
+                        } else {
+                            System.out.println("No se encontró estudiante o carrera con los IDs proporcionados.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error de formato en datos de estudianteCarrera: " + e.getMessage());
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 }

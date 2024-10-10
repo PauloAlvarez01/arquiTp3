@@ -35,7 +35,7 @@ public class EstudianteCarrera implements Serializable {
     }
 
     public EstudianteCarrera(int id_estudiante, int id_carrera, int inscripcion, int graduacion, int antiguedad) {
-        this.id = id;
+
         this.id_estudiante = id_estudiante;
         this.id_carrera = id_carrera;
         this.inscripcion = inscripcion;
@@ -45,15 +45,16 @@ public class EstudianteCarrera implements Serializable {
         this.carrera = null;
     }
 
-    public EstudianteCarrera( int inscripcion, int graduacion, int antiguedad, Estudiante estudiante, Carrera carrera) {
-        this.id_estudiante = estudiante.getLU();
-        this.id_carrera = carrera.getIdCarrera();
+    public EstudianteCarrera(int inscripcion, int graduacion, int antiguedad, Estudiante estudiante, Carrera carrera) {
+        this.estudiante = estudiante;
+        this.carrera = carrera;
         this.inscripcion = inscripcion;
         this.graduacion = graduacion;
         this.antiguedad = antiguedad;
-        this.estudiante = estudiante;
-        this.carrera = carrera;
+        this.id_estudiante = estudiante.getLU();
+        this.id_carrera = carrera.getIdCarrera();
     }
+
 
 
 }
