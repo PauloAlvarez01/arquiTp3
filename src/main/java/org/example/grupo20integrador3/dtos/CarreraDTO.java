@@ -34,8 +34,6 @@ public class CarreraDTO {
     @Override
     public String toString() {
         return "CarreraDTO{" +
-                "nombreCarrera='" + nombreCarrera + '\'' +
-                ", inscriptos=" + inscriptos +
-                '}';
+                "nombreCarrera='" + nombreCarrera + '\'';
     }
 }

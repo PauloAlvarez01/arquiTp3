@@ -56,5 +56,15 @@ public class EstudianteCarrera implements Serializable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "EstudianteCarrera{" +
+                "antiguedad=" + antiguedad +
+                ", graduacion=" + graduacion +
+                ", inscripcion=" + inscripcion +
+                ", id_carrera=" + id_carrera +
+                ", id_estudiante=" + id_estudiante +
+                ", id=" + id +
+                '}';
+    }
 }

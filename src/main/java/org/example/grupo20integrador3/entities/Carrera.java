@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Carrera implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrera;
     @Column
     private String nombre;
@@ -26,16 +26,13 @@ public class Carrera implements Serializable {
 
     }
 
-    public Carrera(int idCarrera, String nombre, int duracion) {
-        this.idCarrera = idCarrera;
-        this.nombre = nombre;
-        this.duracion = duracion;
-    }
-
     public Carrera(String nombre, int duracion) {
         this.nombre = nombre;
         this.duracion = duracion;
         this.inscriptos = new ArrayList<EstudianteCarrera>();
     }
 
+    public int getInscriptos() {
+        return inscriptos.size();
+    }
 }

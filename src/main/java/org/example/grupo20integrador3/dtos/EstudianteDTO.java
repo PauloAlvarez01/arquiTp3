@@ -1,6 +1,13 @@
 package org.example.grupo20integrador3.dtos;
 
+import org.example.grupo20integrador3.entities.Carrera;
+import org.example.grupo20integrador3.entities.EstudianteCarrera;
+import org.example.grupo20integrador3.repositories.CarreraRepository;
+import org.example.grupo20integrador3.repositories.EstudianteCarreraRepository;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EstudianteDTO {
     private String nombre;
@@ -10,10 +17,11 @@ public class EstudianteDTO {
     private int dni;
     private String ciudad;
     private int nro_libreta;
-    private List<EstudianteCarreraDTO> carreras;
+    private List<CarreraSimpleDTO> carreras;
 
 
-    public EstudianteDTO(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta) {
+
+    public EstudianteDTO(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int nro_libreta, ArrayList<CarreraSimpleDTO> carreras ) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -21,6 +29,9 @@ public class EstudianteDTO {
         this.dni = dni;
         this.ciudad = ciudad;
         this.nro_libreta = nro_libreta;
+        this.carreras = carreras;
+
+
     }
 
     public String getNombre() {
@@ -79,7 +90,7 @@ public class EstudianteDTO {
         this.nro_libreta = nro_libreta;
     }
 
-    public List<EstudianteCarreraDTO> getCarreras() {
+    public List<CarreraSimpleDTO> getCarreras() {
         return carreras;
     }
 

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Estudiante implements Serializable {
     @Column
     private String ciudad;
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int LU;
 
     @OneToMany(mappedBy = "estudiante")  //se refiere al atributo de estudianteCarrera
@@ -35,16 +36,31 @@ public class Estudiante implements Serializable {
 
     }
 
-    public Estudiante(int DNI, String nombre, String apellido, int edad, String genero, String ciudad, int LU) {
+    public Estudiante(int DNI, String nombre, String apellido, int edad, String genero, String ciudad) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.genero = genero;
         this.ciudad = ciudad;
-        this.LU = LU;
         this.carrerasInscriptas = new ArrayList<EstudianteCarrera>();
     }
 
+    public ArrayList<EstudianteCarrera> getCarrerasInscriptas() {
+        return new ArrayList<EstudianteCarrera>(carrerasInscriptas);
+    }
 
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "DNI=" + DNI +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", edad=" + edad +
+                ", genero='" + genero + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", LU=" + LU +
+                ", carrerasInscriptas=" + carrerasInscriptas +
+                '}';
+    }
 }

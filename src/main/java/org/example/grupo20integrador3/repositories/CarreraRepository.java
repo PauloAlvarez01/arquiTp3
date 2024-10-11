@@ -1,5 +1,6 @@
 package org.example.grupo20integrador3.repositories;
 
+import org.example.grupo20integrador3.dtos.CarreraDTO;
 import org.example.grupo20integrador3.entities.Carrera;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,5 +10,7 @@ public interface CarreraRepository extends JpaRepository<Carrera, Integer> {
 
     Optional<Carrera> findByIdCarrera(int idCarrera);
 
+    Carrera findCarreraByIdCarrera(int idCarrera);
 
+    Optional<Carrera> findByNombre(String carreraString);
 }
