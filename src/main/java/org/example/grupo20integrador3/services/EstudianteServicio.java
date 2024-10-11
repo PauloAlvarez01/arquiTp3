@@ -41,7 +41,7 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
         }
     }
 
-    private ArrayList<CarreraSimpleDTO> getCarrerasInscriptas ( Estudiante estudiante){
+    public ArrayList<CarreraSimpleDTO> getCarrerasInscriptas ( Estudiante estudiante){
         ArrayList<CarreraSimpleDTO> carrerasDTO = new ArrayList<>();
         ArrayList<EstudianteCarrera>  carreras = estudiante.getCarrerasInscriptas();
         for(EstudianteCarrera carrera : carreras) {

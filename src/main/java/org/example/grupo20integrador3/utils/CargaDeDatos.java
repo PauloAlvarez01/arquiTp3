@@ -3,12 +3,14 @@ package org.example.grupo20integrador3.utils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.example.grupo20integrador3.dtos.EstudianteCarreraRequestDTO;
 import org.example.grupo20integrador3.entities.Carrera;
 import org.example.grupo20integrador3.entities.Estudiante;
 import org.example.grupo20integrador3.entities.EstudianteCarrera;
 import org.example.grupo20integrador3.repositories.CarreraRepository;
 import org.example.grupo20integrador3.repositories.EstudianteCarreraRepository;
 import org.example.grupo20integrador3.repositories.EstudianteRepository;
+import org.example.grupo20integrador3.services.EstudianteCarreraServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
@@ -25,13 +27,13 @@ public class CargaDeDatos {
 
     private EstudianteRepository estudianteRepository;
     private CarreraRepository carreraRepository;
-    private EstudianteCarreraRepository estudianteCarreraRepository;
+    private EstudianteCarreraServicio estudianteCarreraServicio;
 
     @Autowired
-    public CargaDeDatos(EstudianteRepository estudianteRepository, CarreraRepository carreraRepository, EstudianteCarreraRepository estudianteCarreraRepository) {
+    public CargaDeDatos(EstudianteRepository estudianteRepository, CarreraRepository carreraRepository, EstudianteCarreraServicio estudianteCarreraServicio) {
         this.estudianteRepository = estudianteRepository;
         this.carreraRepository = carreraRepository;
-        this.estudianteCarreraRepository = estudianteCarreraRepository;
+        this.estudianteCarreraServicio = estudianteCarreraServicio;
     }
 
 
@@ -117,23 +119,10 @@ public class CargaDeDatos {
                         int graduacion = Integer.parseInt(una_graduacion);
                         int antiguedad = Integer.parseInt(una_antiguedad);
 
-                        // Verificar que existen el estudiante y la carrera
-                        Optional<Estudiante> estudianteOpt = estudianteRepository.findByDNI(dni_estudiante);
-                        Optional<Carrera> carreraOpt = carreraRepository.findByIdCarrera(idCarrera);
+                        EstudianteCarreraRequestDTO matriculacion = new EstudianteCarreraRequestDTO(inscripcion, graduacion,antiguedad, dni_estudiante, idCarrera);
+                        estudianteCarreraServicio.save (matriculacion);
 
-                        if (estudianteOpt.isPresent() && carreraOpt.isPresent()) {
-                            EstudianteCarrera estudianteCarrera = new EstudianteCarrera(inscripcion, graduacion, antiguedad, estudianteOpt.get(), carreraOpt.get());
 
-                            // Verificar si ya existe la relación
-                            List<EstudianteCarrera> existingEstudianteCarrera = estudianteCarreraRepository.findByEstudianteAndCarrera(estudianteOpt.get(), carreraOpt.get());
-                            if (existingEstudianteCarrera.isEmpty()) {
-                                estudianteCarreraRepository.save(estudianteCarrera);
-                            } else {
-                                System.out.println("La relación ya existe para el estudiante con DNI: " + dni_estudiante + " y la carrera: " + carreraOpt.get().getNombre());
-                            }
-                        } else {
-                            System.out.println("No se encontró estudiante o carrera con los IDs proporcionados.");
-                        }
                     } catch (NumberFormatException e) {
                         System.err.println("Error de formato en datos de estudianteCarrera: " + e.getMessage());
                     }
