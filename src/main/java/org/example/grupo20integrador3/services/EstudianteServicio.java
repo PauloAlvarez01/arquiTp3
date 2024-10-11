@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.example.grupo20integrador3.dtos.CarreraDTO;
 import org.example.grupo20integrador3.dtos.CarreraSimpleDTO;
 import org.example.grupo20integrador3.dtos.EstudianteDTO;
+import org.example.grupo20integrador3.dtos.EstudianteRequestDTO;
 import org.example.grupo20integrador3.entities.Carrera;
 import org.example.grupo20integrador3.entities.Estudiante;
 import org.example.grupo20integrador3.entities.EstudianteCarrera;
@@ -48,5 +49,12 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
             carrerasDTO.add(new CarreraSimpleDTO(carreraOpt.getNombre()));
         }
         return carrerasDTO;
+    }
+
+    @Transactional
+    public EstudianteDTO save(EstudianteRequestDTO request) {
+        final var estudiante = new Estudiante( request );
+        final var result = this.estudianteRepository.save( estudiante );
+        return new EstudianteDTO( result.getNombre(), result.getApellido(), result.getEdad(), result.getGenero(), result.getDNI(), result.getCiudad(), result.getLU(), null);
     }
 }

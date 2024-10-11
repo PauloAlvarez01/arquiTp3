@@ -3,6 +3,7 @@ package org.example.grupo20integrador3.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Carrera implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +24,6 @@ public class Carrera implements Serializable {
     @OneToMany(mappedBy = "carrera")
     private List<EstudianteCarrera> inscriptos;
 
-    public Carrera() {
-
-    }
 
     public Carrera(String nombre, int duracion) {
         this.nombre = nombre;

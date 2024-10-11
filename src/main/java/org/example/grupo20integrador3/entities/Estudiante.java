@@ -2,6 +2,8 @@ package org.example.grupo20integrador3.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.grupo20integrador3.dtos.EstudianteRequestDTO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Estudiante implements Serializable {
     @Column
     private int DNI;
@@ -32,9 +35,6 @@ public class Estudiante implements Serializable {
     @OneToMany(mappedBy = "estudiante")  //se refiere al atributo de estudianteCarrera
     private List<EstudianteCarrera> carrerasInscriptas;
 
-    public Estudiante() {
-
-    }
 
     public Estudiante(int DNI, String nombre, String apellido, int edad, String genero, String ciudad) {
         this.DNI = DNI;
@@ -43,6 +43,16 @@ public class Estudiante implements Serializable {
         this.edad = edad;
         this.genero = genero;
         this.ciudad = ciudad;
+        this.carrerasInscriptas = new ArrayList<EstudianteCarrera>();
+    }
+
+    public Estudiante(EstudianteRequestDTO request) {
+        this.DNI = request.getDni();
+        this.nombre = request.getNombre();
+        this.apellido = request.getApellido();
+        this.edad = request.getEdad();
+        this.genero = request.getGenero();
+        this.ciudad = request.getCiudad();
         this.carrerasInscriptas = new ArrayList<EstudianteCarrera>();
     }
 
