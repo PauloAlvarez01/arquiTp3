@@ -22,7 +22,6 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
 @Autowired
     private EstudianteRepository estudianteRepository;
 
-//Experimental
 @Autowired
     private CarreraRepository carreraRepository;
 

@@ -31,7 +31,7 @@ public class Carrera implements Serializable {
         this.inscriptos = new ArrayList<EstudianteCarrera>();
     }
 
-    public int getInscriptos() {
-        return inscriptos.size();
+    public Long getInscriptos() {
+        return (long) inscriptos.size();
     }
 }
