@@ -82,4 +82,14 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
         }
         return null;
     }
+
+    public List<EstudianteDTO> findByGenero(String genero) throws Exception {
+        var resultado = estudianteRepository.findEstudiantesByGenero(genero);
+
+        try{
+            return resultado.stream().map(estudiante->new EstudianteDTO(estudiante.getNombre(), estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDNI(),estudiante.getCiudad(),estudiante.getLU(), getCarrerasInscriptas(estudiante))).collect(Collectors.toList());
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

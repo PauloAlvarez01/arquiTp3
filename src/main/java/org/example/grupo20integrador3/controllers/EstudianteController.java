@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 
 @RestController
 @RequestMapping("/estudiantes")
@@ -40,8 +42,15 @@ import org.springframework.web.bind.annotation.*;
 
         /*d) recuperar un estudiante, en base a su número de libreta universitaria.
          */
-        @GetMapping("/{lu}")
+        @GetMapping("/lu/{lu}")
         public EstudianteDTO findEstudianteByLu( @PathVariable int lu ){
             return this.estudianteServicio.findByLu(lu);
+        }
+
+        /*e) recuperar todos los estudiantes, en base a su género.
+         */
+        @GetMapping("/genero/{genero}")
+        public Iterable<EstudianteDTO> findEstudiantesByGenero(@PathVariable String genero ) throws Exception {
+            return this.estudianteServicio.findByGenero(genero);
         }
 }
