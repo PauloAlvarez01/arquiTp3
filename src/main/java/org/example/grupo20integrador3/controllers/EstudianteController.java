@@ -37,4 +37,11 @@ import org.springframework.web.bind.annotation.*;
             final var result = this.estudianteServicio.save(request);
             return ResponseEntity.accepted().body( result );
         }
+
+        /*d) recuperar un estudiante, en base a su número de libreta universitaria.
+         */
+        @GetMapping("/{lu}")
+        public EstudianteDTO findEstudianteByLu( @PathVariable int lu ){
+            return this.estudianteServicio.findByLu(lu);
+        }
 }

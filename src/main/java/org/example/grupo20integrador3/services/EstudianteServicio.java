@@ -32,9 +32,7 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
 
         var resultado = estudianteRepository.getEstudiantesOrdenApellido();
 
-
         try{
-
             return resultado.stream().map(estudiante->new EstudianteDTO(estudiante.getNombre(), estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDNI(),estudiante.getCiudad(),estudiante.getLU(), getCarrerasInscriptas(estudiante))).collect(Collectors.toList());
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -51,10 +49,37 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
         return carrerasDTO;
     }
 
+
+    /*  ***************** PARA CONSULTAR EN CLASE ******************************
+        var   carreras = estudiante.getCarrerasInscriptas();
+        try{
+            return carreras.stream().map(carrera -> new CarreraSimpleDTO(carrera.getNombre()).collect(Collectors.toList()));
+
+        }
+        catch{}
+
+     */
+
     @Transactional
     public EstudianteDTO save(EstudianteRequestDTO request) {
         final var estudiante = new Estudiante( request );
         final var result = this.estudianteRepository.save( estudiante );
         return new EstudianteDTO( result.getNombre(), result.getApellido(), result.getEdad(), result.getGenero(), result.getDNI(), result.getCiudad(), result.getLU(), null);
+    }
+
+    @Transactional
+    public EstudianteDTO findByLu(int lu) {
+        var resultado = estudianteRepository.findByLU(lu);
+        if(resultado.isPresent()) {
+            return new EstudianteDTO(resultado.get().getNombre(),
+                                    resultado.get().getApellido(),
+                                    resultado.get().getEdad(),
+                                    resultado.get().getGenero(),
+                                    resultado.get().getDNI(),
+                                    resultado.get().getCiudad(),
+                                    resultado.get().getLU(),
+                                    getCarrerasInscriptas(resultado.get()));
+        }
+        return null;
     }
 }
