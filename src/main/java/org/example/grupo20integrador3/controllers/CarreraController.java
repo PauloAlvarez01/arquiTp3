@@ -1,7 +1,7 @@
 package org.example.grupo20integrador3.controllers;
 
 import org.example.grupo20integrador3.dtos.CarreraDTO;
-import org.example.grupo20integrador3.repositories.CarreraRepository;
+import org.example.grupo20integrador3.dtos.ReporteCarreraDTO;
 import org.example.grupo20integrador3.services.CarreraServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +22,14 @@ public class CarreraController {
     @GetMapping("/conInscriptosOrdenadas")
     public Iterable<CarreraDTO> getCarrerasConInscriptosOrdenadas() throws Exception {
         return carreraServicio.getCarrerasConInscriptosOrdenadas();
+    }
+
+    /*h) generar un reporte de las carreras, que para cada carrera incluya información de los
+    inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y
+    presentar los años de manera cronológica
+    */
+    @GetMapping("/reporte")
+    public Iterable<ReporteCarreraDTO> getCarrerasReporte() throws Exception {
+        return carreraServicio.getCarrerasReporte();
     }
 }
