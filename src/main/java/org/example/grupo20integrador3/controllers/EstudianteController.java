@@ -53,4 +53,9 @@ import java.util.ArrayList;
         public Iterable<EstudianteDTO> findEstudiantesByGenero(@PathVariable String genero ) throws Exception {
             return this.estudianteServicio.findByGenero(genero);
         }
+
+        @GetMapping("/{carrera}/{localidad}")
+        public Iterable<EstudianteDTO> findEstudiantesByCarreraAndLocalidad(@PathVariable String carrera , @PathVariable String localidad) throws Exception {
+            return this.estudianteServicio.findEstudiantesByCarreraAndLocalidad(carrera, localidad);
+        }
 }

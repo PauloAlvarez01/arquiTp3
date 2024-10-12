@@ -30,8 +30,6 @@ public class EstudianteDTO {
         this.ciudad = ciudad;
         this.nro_libreta = nro_libreta;
         this.carreras = carreras;
-
-
     }
 
     public String getNombre() {

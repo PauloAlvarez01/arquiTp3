@@ -91,4 +91,13 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
             throw new Exception(e.getMessage());
         }
     }
+
+    public List<EstudianteDTO> findEstudiantesByCarreraAndLocalidad(String carrera, String localidad) throws Exception {
+        var resultado = estudianteRepository.findEstudiantesByCarreraAndLocalidad(carrera, localidad);
+        try{
+            return resultado.stream().map(estudiante->new EstudianteDTO(estudiante.getNombre(), estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDNI(),estudiante.getCiudad(),estudiante.getLU(), getCarrerasInscriptas(estudiante))).collect(Collectors.toList());
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }
