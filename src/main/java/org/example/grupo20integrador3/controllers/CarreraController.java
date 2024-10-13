@@ -19,6 +19,8 @@ public class CarreraController {
         this.carreraServicio = carreraServicio;
     }
 
+    /*f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
+    */
     @GetMapping("/conInscriptosOrdenadas")
     public Iterable<CarreraDTO> getCarrerasConInscriptosOrdenadas() throws Exception {
         return carreraServicio.getCarrerasConInscriptosOrdenadas();

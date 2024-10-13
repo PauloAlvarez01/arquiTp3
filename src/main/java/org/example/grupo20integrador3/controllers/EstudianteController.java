@@ -25,6 +25,14 @@ import java.util.ArrayList;
             this.estudianteServicio = estudianteServicio;
         }
 
+        /*a) dar de alta un estudiante
+         */
+        @PostMapping("")
+        public ResponseEntity<EstudianteDTO> save( @RequestBody EstudianteRequestDTO request ){
+            final var result = this.estudianteServicio.save(request);
+            return ResponseEntity.accepted().body( result );
+        }
+
         /*c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
          */
         @GetMapping("/ordenadosApellido")
@@ -32,13 +40,6 @@ import java.util.ArrayList;
             return estudianteServicio.getEstudiantesOrdenados();
         }
 
-        /*a) dar de alta un estudiante
-        */
-        @PostMapping("")
-        public ResponseEntity<EstudianteDTO> save( @RequestBody EstudianteRequestDTO request ){
-            final var result = this.estudianteServicio.save(request);
-            return ResponseEntity.accepted().body( result );
-        }
 
         /*d) recuperar un estudiante, en base a su número de libreta universitaria.
          */
@@ -54,6 +55,8 @@ import java.util.ArrayList;
             return this.estudianteServicio.findByGenero(genero);
         }
 
+        /*g) recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
+         */
         @GetMapping("/{carrera}/{localidad}")
         public Iterable<EstudianteDTO> findEstudiantesByCarreraAndLocalidad(@PathVariable String carrera , @PathVariable String localidad) throws Exception {
             return this.estudianteServicio.findEstudiantesByCarreraAndLocalidad(carrera, localidad);
