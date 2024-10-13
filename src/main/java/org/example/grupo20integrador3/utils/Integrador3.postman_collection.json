@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "10bb0018-097b-4452-95c8-591236c6d986",
+		"name": "Integrador3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29654266"
+	},
+	"item": [
+		{
+			"name": "Consigna g)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/estudiantes/TUDAI/Rauch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"TUDAI",
+						"Rauch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna a)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\": \"Test Dos\",\r\n\"apellido\": \"AltaEstudiante\",\r\n\"edad\": 30,\r\n\"genero\": \"Male\",\r\n\"dni\": 30000010,\r\n\"ciudad\": \"Las Flores\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/estudiantes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna b)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"inscripcion\": 2021,\r\n\"graduacion\": 2024,\r\n\"antiguedad\": 3,\r\n\"dniAlumno\": 44782708,\r\n\"idCarrera\": 5\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/estudiantes/matricular",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"matricular"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna c)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/estudiantes/ordenadosApellido",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"ordenadosApellido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna d)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/estudiantes/lu/152",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"lu",
+						"152"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna e)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\": \"Josefina\",\r\n\"apellido\": \"Belaunzaran\",\r\n\"edad\": 21,\r\n\"genero\": \"Female\",\r\n\"dni\": 30000001,\r\n\"ciudad\": \"Tandil\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/estudiantes/genero/Female",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"genero",
+						"Female"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna f)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Transfer-Encoding",
+						"value": "chunked",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/carreras/conInscriptosOrdenadas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carreras",
+						"conInscriptosOrdenadas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consigna h)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/carreras/reporte",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carreras",
+						"reporte"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
