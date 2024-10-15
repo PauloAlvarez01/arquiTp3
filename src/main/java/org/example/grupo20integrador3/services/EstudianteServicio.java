@@ -100,4 +100,17 @@ public class EstudianteServicio /*VER QUE IMPLEMENTA*/ {
             throw new Exception(e.getMessage());
         }
     }
+
+
+    public void delete(Long lu) throws Exception {
+        try{
+            if(estudianteRepository.existsById(lu)){
+                estudianteRepository.deleteById(lu);
+            }else{
+                throw new Exception();
+            }
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

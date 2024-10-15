@@ -61,4 +61,9 @@ import java.util.ArrayList;
         public Iterable<EstudianteDTO> findEstudiantesByCarreraAndLocalidad(@PathVariable String carrera , @PathVariable String localidad) throws Exception {
             return this.estudianteServicio.findEstudiantesByCarreraAndLocalidad(carrera, localidad);
         }
+
+        @DeleteMapping("/lu/{lu}")
+        public void delete( @PathVariable Long lu ) throws Exception {
+            this.estudianteServicio.delete(lu);
+        }
 }
