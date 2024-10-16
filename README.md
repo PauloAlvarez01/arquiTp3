@@ -11,4 +11,5 @@
 
 
 >[!note] 
- > _se agrega archivo con export de Postman en carpeta Utils._
+ > _Se agrega archivo con export de Postman en carpeta Utils_
+ > _con los endpoints de las consignas._
