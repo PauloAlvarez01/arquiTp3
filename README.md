@@ -10,7 +10,7 @@
 - Andersen, Pablo
 
 
->[!note] 
+
  > _Se agrega archivo con export de Postman en carpeta Utils_
  >
  > _con los endpoints de las consignas._
