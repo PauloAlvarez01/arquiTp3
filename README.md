@@ -3,8 +3,8 @@
 ## Entrega Integrador 3
 
 ### Integrantes
--Alvarez, Paulo
--Belaunzaran, Josefina
--Cerdeira, Manuel
--Ceschinelli, Gianluca
--Andersen, Pablo
+- Alvarez, Paulo
+- Belaunzaran, Josefina
+- Cerdeira, Manuel
+- Ceschinelli, Gianluca
+- Andersen, Pablo
