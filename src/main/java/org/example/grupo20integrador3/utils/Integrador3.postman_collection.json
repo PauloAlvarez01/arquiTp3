@@ -141,7 +141,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/estudiantes/lu/152",
+					"raw": "localhost:8080/estudiantes/lu/12",
 					"host": [
 						"localhost"
 					],
@@ -149,7 +149,27 @@
 					"path": [
 						"estudiantes",
 						"lu",
-						"152"
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicional delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/estudiantes/lu/16",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiantes",
+						"lu",
+						"16"
 					]
 				}
 			},

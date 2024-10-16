@@ -30,7 +30,7 @@ import java.util.ArrayList;
         @PostMapping("")
         public ResponseEntity<EstudianteDTO> save( @RequestBody EstudianteRequestDTO request ){
             final var result = this.estudianteServicio.save(request);
-            return ResponseEntity.accepted().body( result );
+            return ResponseEntity.ok().body( result );
         }
 
         /*c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
@@ -61,4 +61,20 @@ import java.util.ArrayList;
         public Iterable<EstudianteDTO> findEstudiantesByCarreraAndLocalidad(@PathVariable String carrera , @PathVariable String localidad) throws Exception {
             return this.estudianteServicio.findEstudiantesByCarreraAndLocalidad(carrera, localidad);
         }
+
+    @DeleteMapping("/lu/{lu}")
+    public ResponseEntity<String> delete( @PathVariable Long lu ) throws Exception {
+        String message = "";
+        var result = this.estudianteServicio.delete(lu);
+        if (result  == 1){
+            message = "Se eliminó con exito el estudiante con LU: " + lu.toString();
+            return ResponseEntity.ok().body( message );
+        } else if (result == 0){
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            message = "El estudiante con LU: " + lu.toString() + " se encuentra matriculado en alguna carrera. No se puede eliminar.";
+            return ResponseEntity.internalServerError().body( message );
+        }
+    }
 }
