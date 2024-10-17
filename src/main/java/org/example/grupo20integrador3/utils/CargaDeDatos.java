@@ -39,8 +39,8 @@ public class CargaDeDatos {
 
 
     private Iterable<CSVRecord> getData(String archivo) throws IOException {
-        String path = "src\\main\\resources\\" + archivo;
-        Reader in = new FileReader(path);
+        File file = ResourceUtils.getFile("classpath:" + archivo);
+        Reader in = new FileReader(file);
         String[] header = {};  // Puedes configurar tu encabezado personalizado aquí si es necesario
         CSVParser csvParser = CSVFormat.EXCEL.withHeader(header).parse(in);
 
