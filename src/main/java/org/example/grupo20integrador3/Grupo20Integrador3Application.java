@@ -9,15 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Grupo20Integrador3Application {
 
-	@Autowired
-	private CargaDeDatos cargaDeDatos;
+	//@Autowired
+	//private CargaDeDatos cargaDeDatos;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Grupo20Integrador3Application.class, args);
 	}
 
-@PostConstruct
-public void init() throws Exception {
-	cargaDeDatos.cargarDatosDesdeCsv();
-}
+//@PostConstruct
+//public void init() throws Exception {
+	//cargaDeDatos.cargarDatosDesdeCsv();
+//}
 }
