@@ -1,3 +1,11 @@
+# Etapa de construcción (Build Stage)
+FROM maven:3.8.6-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Etapa final (Final Stage)
 FROM amazoncorretto:21-alpine-jdk
-COPY target/Grupo20Integrador3-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+WORKDIR /app
+COPY --from=build /app/target/Grupo20Integrador3-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
