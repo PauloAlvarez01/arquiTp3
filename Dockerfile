@@ -1,4 +1,3 @@
-# Etapa de construcción (Build Stage)
-FROM amazoncorretto:21-alpine-jdk
+FROM amazoncorretto:17-alpine-jdk
 COPY target/Grupo20Integrador3-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
